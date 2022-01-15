@@ -1,0 +1,40 @@
+{% extends 'urlshortener/base.html' %} 
+
+{% block body %}
+
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-header text-center py-3">
+      <h1>URL qisqartma Sahifasi <i class="fas fa-link px-2"></i></h1>
+    </div>
+    <div class="px-3 py-4">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row g-1">
+          <div class="col-10">{{form.url_first}}</div>
+          <div class="col-2">
+            <button class="btn btn-primary btn-lg w-100" type="submit">
+              Qisqartirish
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% if errors %}
+  <div class="alert alert-danger mt-4" role="alert">
+    <p>{{errors}}</p>
+  </div>
+  {% endif %}
+
+  {% if new_url %}
+
+  <div class="mx-auto text-center mt-5">
+    <h2 class="text-danger">Sizning qisqartirilgan URL manzilingiz</h2>
+    <p>Qisqartirilgan URL ni kopy qilishingiz va do'stlaringizga yuborishingiz mumkin</p>
+    <p class="">{{new_url}}</p>
+    <p><span class="text-danger">Oldingi URL:</span> {{url_first}}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock body %}
